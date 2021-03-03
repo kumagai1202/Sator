@@ -1,0 +1,6 @@
+<script>
+//local storageに値を保存
+localstorage.setItem('Key', value);
+//localstorageから値を取得
+var item = localstorage.getitem('key');
+</script>
