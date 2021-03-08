@@ -6,6 +6,24 @@
 
   <script type="text/javascript" language="javascript">
         function onButtonClick(val) {
+//先に時刻をテキストとして出力する。
+				var now = new Date();
+				var hour1 = now.getHours();
+				var min1 = now.getMinutes();
+				var sec1 = now.getSeconds();
+		       					document.forms.form2.txtb021.value =hour1;
+		       					document.forms.form2.txtb022.value =min1;
+		       					document.forms.form2.txtb023.value =sec1;
+				var hour2 = document.forms.form2.txtb011.value
+				var min2 = document.forms.form2.txtb012.value
+				var sec2 = document.forms.form2.txtb013.value
+//先に時刻をテキストとして出力する。
+//初期時刻・入力された時刻を引き算する。
+var jikan = (hour1 - hour2)*3600+(min1-min2)*60+(sec1-sec2);
+		       					document.forms.form2.txtb031.value =jikan;
+
+
+//初期時刻・入力された時刻を引き算する。
 
 					var i =parseInt(document.forms.form2.txtb003.value);
 					var j =parseInt(document.forms.form2.txtb001.value);
@@ -18,12 +36,12 @@
 					var row = table.insertRow(-1);
 					var cell = row.insertCell(-1);
 					// -1で列末尾に追加。インデックスで指定の位置に追加も可能
-					cell.innerHTML = val; // セル内の値を「Cell」に書き換え
+					cell.innerHTML = jikan + ":" + val; // セル内の値を「Cell」に書き換え
 					}
 					else if(j-2 > i){
 					
 					var cell = table.rows[i+2].insertCell(-1);
-					cell.innerHTML = val;
+					cell.innerHTML = jikan + ":" + val;
 					}
 					else{
 					var row = table.insertRow(-1);
@@ -35,14 +53,51 @@
 				            continue;
      				   }			
 					}
-			cell.innerHTML = val;
+			cell.innerHTML = jikan + ":" + val;
  				       }
+ 
+
         }
+        
+        
 		function syoukyo(){
 				document.forms.form2.txtb001.value='';
 				document.forms.form2.txtb002.value='';
+				
+			
 		}
+
+
+		
+		
+//-----------------------------------------------
+		function doReload() {
+ 
+    // reloadメソッドによりページをリロード
+ 		   window.location.reload();
+ //		   Thread.sleep(100000);
+  //先に時刻をテキストとして出力する。
+				var now2 = new Date();
+				var hour2 = now2.getHours();
+				var min2 = now2.getMinutes();
+				var sec2 = now2.getSeconds();
+		       					document.forms.form2.txtb011.value =hour2;
+		       					document.forms.form2.txtb012.value =min2;
+		       					document.forms.form2.txtb013.value =sec2;
+
+//先に時刻をテキストとして出力する。
+		}
+//-----------------------------------------------		
 		function hiduke(){
+						var now = new Date();
+				var hour1 = now.getHours();
+				var min1 = now.getMinutes();
+				var sec1 = now.getSeconds();
+		       					document.forms.form2.txtb011.value =hour1;
+		       					document.forms.form2.txtb012.value =min1;
+		       					document.forms.form2.txtb013.value =sec1;
+
+//先に時刻をテキストとして出力する。
 		
 					var k =parseInt(document.forms.form2.txtb003.value);
 					var j =parseInt(document.forms.form2.txtb001.value);
@@ -62,19 +117,97 @@
 		       					document.forms.form2.txtb003.value = 0;
 		       					
 	  					 }
+	  					 
+//-----------------------------------------------		
+function getNow(){
+			var now = new Date();
+				var hour1 = now.getHours();
+				var min1 = now.getMinutes();
+				var sec1 = now.getSeconds();
+}
+//-----------------------------------------------		
+
+window.onload = function(){
+			var now = new Date();
+				var hour1 = now.getHours();
+				var min1 = now.getMinutes();
+				var sec1 = now.getSeconds();
+		       					document.forms.form2.txtb011.value =hour1;
+		       					document.forms.form2.txtb012.value =min1;
+		       					document.forms.form2.txtb013.value =sec1;
+		       					}
+
   </script>
   
 </head>
-
+<!--ここからhtml---------------->
 <body>
   <form name="form1" action="">
   
   
-      	<input type="button" id="id_button10"   value="ゲーム開始" style="width:40%;height:25px;""  onclick="(function(){syoukyo()})();" />
-     	<input type="button" id="id_button11"   value="日付変更" style="width:40%;height:25px;""  onclick="(function(){hiduke()})();" />
+      	<input type="button" id="id_button10"   value="ゲーム開始" style="width:40%;height:25px;""  onclick="(function(){doReload()})();" />
+     	<input type="button" id="id_button11"   value="日付変更" style="width:35%;height:25px;""  onclick="(function(){hiduke()})();" />
 <br><br>
+<!--
+ <table border="1" id="tablemap" width="90%" style="font-size: 8pt";>
+<!--  <thead>
+    <tr>
 
-        <img src="img/map/0101.png" 	id="black1" 	style="width:6%;height:50px;" border="1"  onclick="(function(){var val = document.forms.form1.black1.id;onButtonClick(val)})();""/>
+
+    </tr>
+  </thead> 
+  <tbody>
+ 
+        <tr style="height:40px">
+
+      <td onclick="(function(){var val=document.forms.form1.black1.id; onButtonClick(val)})();"">アッパー</td>
+      <td id="test001" onclick="(function(){var val=document.tables.tablemap.test001.innertext; onButtonClick(val)})();"">パー</td>
+
+      <td  id="test2"; bgcolor="cyan"; style="width:3%" colspan="1"; 	onclick="(function(){val=5055555; onButtonClick(val)})();">test</td>
+      <td  bgcolor="cyan"; style="width:3%"; colspan="1"; 	onclick= "(function(){val=5055555; onButtonClick(val)})();">test</td>
+      <td  bgcolor="cyan"; style="width:3%"; colspan="1"; 	onclick= "(function(){string val="moji" ; onButtonClick(val)})();">test</td>
+   
+      <td  bgcolor="cyan" style="width:3%"></td>
+            <td  bgcolor="cyan" style="width:3%"></td>
+
+              <td bgcolor="pink"></td><td></td>
+              <td colspan="2"></td><td></td>
+              <td></td><td></td>
+              <td></td><td></td>
+              <td></td>
+              
+
+    </tr>
+        <tr style="height:40px">
+              <td  bgcolor="cyan" style="width:3%"></td>
+      <td  bgcolor="cyan" style="width:3%"></td>
+      <td  bgcolor="cyan" style="width:3%"></td>
+      <td  bgcolor="cyan" style="width:3%"></td>
+      <td  bgcolor="cyan" style="width:3%"></td>
+      <td  bgcolor="cyan" style="width:3%"></td>
+
+      <td ></td>
+      <td></td>
+              <td bgcolor="pink"></td><td></td>
+              <td></td><td></td>
+              <td></td><td></td>
+              <td></td><td></td>
+              <td></td>
+              
+
+    </tr>
+
+
+   
+
+
+
+  <tbody>
+</table>
+-->
+
+
+       <img src="img/map/0101.png" 	id="black1" 	style="width:6%;height:50px;" border="1"  onclick="(function(){var val = document.forms.form1.black1.id;onButtonClick(val)})();""/>
         <img src="img/map/0102upper.png" 	id="upper" 	style="width:6%;height:50px;" border="1"  onclick="(function(){var val = document.forms.form1.upper.id;onButtonClick(val)})();""/>
         <img src="img/map/0103turo.png" 	id="turomed" 	style="width:20%;height:50px;" border="1"  onclick="(function(){var val = document.forms.form1.turomed.id;onButtonClick(val)})();""/>
         <img src="img/map/0104cafelh.png" 	id="CafeLH" 	style="width:6%;height:50px;" border="1"  onclick="(function(){var val = document.forms.form1.CafeLH.id;onButtonClick(val)})();""/>
@@ -105,19 +238,18 @@
         <img src="img/map/0306shield.png" 	id="shield" 	style="width:6%;height:50px;" border="1"  onclick="(function(){var val = document.forms.form1.shield.id;onButtonClick(val)})();""/>
 
 
-
+<br><br>
+    	<input type="button" id="id_button01"   value="サボ：リアクタ" 	style="width:15%;height:25px;" onclick="(function(){var val = document.forms.form1.id_button01.value;onButtonClick(val)})();" />
+       	<input type="button" id="id_button02"   value="サボ：停電"  		style="width:15%;height:25px;" onclick="(function(){var val = document.forms.form1.id_button02.value;onButtonClick(val)})();" />
+       	<input type="button" id="id_button03"   value="サボ：O2" 			style="width:15%;height:25px;"  onclick="(function(){var val = document.forms.form1.id_button03.value;onButtonClick(val)})();" />
+      	<input type="button" id="id_button04"   value="サボ：コミュ" 		style="width:15%;height:25px;"  onclick="(function(){var val = document.forms.form1.id_button04.value;onButtonClick(val)})();" />
+		<input type="button" id="id_button20"   value="サボ：扉"	 			style="width:15%;height:25px;"  onclick="(function(){var val = document.forms.form1.id_button20.value;onButtonClick(val)})();" />
 <br>
-    	<input type="button" id="id_button01"   value="saboリアクタ" style="width:20%;height:25px;" onclick="(function(){var val = document.forms.form1.id_button01.value;onButtonClick(val)})();" />
-       	<input type="button" id="id_button02"   value="sabo停電"  style="width:20%;height:25px;" onclick="(function(){var val = document.forms.form1.id_button02.value;onButtonClick(val)})();" />
-       	<input type="button" id="id_button03"   value="saboO2" style="width:15%;height:25px;""  onclick="(function(){var val = document.forms.form1.id_button03.value;onButtonClick(val)})();" />
-      	<input type="button" id="id_button04"   value="saboコミュ" style="width:15%;height:25px;""  onclick="(function(){var val = document.forms.form1.id_button04.value;onButtonClick(val)})();" />
-<input type="button" id="id_button05"   value="扉" style="width:15%;height:25px;""  onclick="(function(){var val = document.forms.form1.id_button05.value;onButtonClick(val)})();" />
-<br>
 
 
 
-        <br>
-        <img src="img/01aka.png" 	id="aka" 	width="6%"	height="5%" border="1"  onclick="(function(){var val = document.forms.form1.aka.id;onButtonClick(val)})();""/>
+
+ <!--       <img src="img/01aka.png" 	id="aka" 	width="6%"	height="5%" border="1"  onclick="(function(){var val = document.forms.form1.aka.value;onButtonClick(val)})();""/>
         <img src="img/02ao.png"		id="ao" 	width="6%" 	height="5%" border="1" onclick="(function(){var val = document.forms.form1.ao.id;onButtonClick(val)})();""/>
         <img src="img/03midori.png" id="midori" width="6%" 	height="5%" border="1" onclick="(function(){var val = document.forms.form1.midori.id;onButtonClick(val)})();""/>
         <img src="img/04pink.png" 	id="pink" 	width="6%" 	height="5%" border="1" onclick="(function(){var val = document.forms.form1.pink.id;onButtonClick(val)})();""/>
@@ -128,12 +260,35 @@
         <img src="img/09mura.png" 	id="murasaki" 	width="6%" 	height="5%" border="1" onclick="(function(){var val = document.forms.form1.murasaki.id;onButtonClick(val)})();""/>
         <img src="img/10tya.png" 	id="tya" 	width="6%" 	height="5%" border="1" onclick="(function(){var val = document.forms.form1.tya.id;onButtonClick(val)})();""/>
         <img src="img/11cyan.png" 	id="cyan" 	width="6%" 	height="5%" border="1" onclick="(function(){var val = document.forms.form1.cyan.id;onButtonClick(val)})();""/>
-        <img src="img/12lime.png" 	id="lime" 	width="6%" 	height="5%" border="1" onclick="(function(){var val = document.forms.form1.lime.id;onButtonClick(val)})();""/>
+        <img src="img/12lime.png" 	id="lime" 	width="6%" 	height="5%" border="1" onclick="(function(){var val = document.forms.form1.lime.id;onButtonClick(val)})();""/>  -->
+        <br>
+       	<input type="button" id="id_button31"   value="赤" 	style="font-weight:bold;  color:#ffffff;background-color:#ff0000;width:6%;height:35px;" onclick="(function(){var val = document.forms.form1.id_button31.value;onButtonClick(val)})();" />
+       	<input type="button" id="id_button32"   value="青" 	style="font-weight:bold;  color:#ffffff;background-color:#0000ff;width:6%;height:35px;" onclick="(function(){var val = document.forms.form1.id_button32.value;onButtonClick(val)})();" />
+       	<input type="button" id="id_button33"   value="緑" 	style="font-weight:bold;  color:#ffffff;background-color:#008000;width:6%;height:35px;" onclick="(function(){var val = document.forms.form1.id_button33.value;onButtonClick(val)})();" />
+       	<input type="button" id="id_button34"   value="ピンク" 	style="font-weight:bold;  color:#ffffff;background-color:#ff00ff;width:6%;height:35px;" onclick="(function(){var val = document.forms.form1.id_button34.value;onButtonClick(val)})();" />
+       	<input type="button" id="id_button35"   value="オレンジ" 	style="font-weight:bold;  color:#ffffff;background-color:#ffa500;width:6%;height:35px;" onclick="(function(){var val = document.forms.form1.id_button35.value;onButtonClick(val)})();" />
+       	<input type="button" id="id_button36"   value="黄色" 	style="font-weight:bold;  color:#000000;background-color:#ffff00;width:6%;height:35px;" onclick="(function(){var val = document.forms.form1.id_button36.value;onButtonClick(val)})();" />
+       	<input type="button" id="id_button37"   value="黒" 	style="font-weight:bold;  color:#ffffff;background-color:#000000;width:6%;height:35px;" onclick="(function(){var val = document.forms.form1.id_button37.value;onButtonClick(val)})();" />
+       	<input type="button" id="id_button38"   value="白" 	style="font-weight:bold;  color:#000000;background-color:#ffffff;width:6%;height:35px;" onclick="(function(){var val = document.forms.form1.id_button38.value;onButtonClick(val)})();" />
+       	<input type="button" id="id_button39"   value="紫" 	style="font-weight:bold;  color:#ffffff;background-color:#a754cb;width:6%;height:35px;" onclick="(function(){var val = document.forms.form1.id_button39.value;onButtonClick(val)})();" />
+       	<input type="button" id="id_button40"   value="茶" 	style="font-weight:bold;  color:#ffffff;background-color:#864a2b;width:6%;height:35px;" onclick="(function(){var val = document.forms.form1.id_button40.value;onButtonClick(val)})();" />
+       	<input type="button" id="id_button41"   value="シアン" 	style="font-weight:bold;  color:#000000;background-color:#00ffff;width:6%;height:35px;" onclick="(function(){var val = document.forms.form1.id_button41.value;onButtonClick(val)})();" />
+       	<input type="button" id="id_button42"   value="ライム" 	style="font-weight:bold;  color:#000000;background-color:#00ff00;width:6%;height:35px;" onclick="(function(){var val = document.forms.form1.id_button42.value;onButtonClick(val)})();" />
+
+
+
+
+
+
+
+
+
+        
 <br><br>
       	<input type="button" id="id_button05"   value="発見" style="width:20%;height:25px;""  onclick="(function(){var val = document.forms.form1.id_button05.value;onButtonClick(val)})();" />
 		<input type="button" id="id_button06"   value="氏体" style="width:20%;height:25px;""  onclick="(function(){var val = document.forms.form1.id_button06.value;onButtonClick(val)})();" />
 		<input type="button" id="id_button07"   value="ボタン" style="width:20%;height:25px;""  onclick="(function(){var val = document.forms.form1.id_button07.value;onButtonClick(val)})();" />     
- 		<input type="button" id="id_button08"   value="削除・ミス・間違い" style="width:20%;height:25px;""  onclick="(function(){var val = document.forms.form1.id_button08.value;onButtonClick(val)})();" />   
+ 		<input type="button" id="id_button08"   value="削除・ミス・間違い" style="width:15%;height:25px;""  onclick="(function(){var val = document.forms.form1.id_button08.value;onButtonClick(val)})();" />   
   </form>
   
   <hr />
@@ -156,9 +311,23 @@
     </tr>
   <tbody>
 </table>
-         <input type="hidden" id="txtb001" style="width:50px;height:10px;" />
-        <input type="hidden" id="txtb002" value=1  style="width:50px;height:10px;" />
-                <input type="hidden" id="txtb003" value= 0  style="width:50px;height:10px;" />   
+         	<input type="hidden" id="txtb001" style="width:50px;height:10px;" />
+        	<input type="hidden" id="txtb002" value=1  style="width:50px;height:10px;" />
+        	<input type="hidden" id="txtb003" value= 0  style="width:50px;height:10px;" />   
+<!--         -->
+        	
+
+			
+        	<input type="hidden" id="txtb011"   style="width:50px;height:10px;" />   
+        	<input type="hidden" id="txtb012"   style="width:50px;height:10px;" />
+        	<input type="hidden" id="txtb013"   style="width:50px;height:10px;" /><br>
+        	<input type="hidden" id="txtb021" value= 0  style="width:50px;height:10px;" />        	
+        	<input type="hidden" id="txtb022" value= 0  style="width:50px;height:10px;" />        	
+        	<input type="hidden" id="txtb023" value= 0  style="width:50px;height:10px;" />
+         	<input type="hidden" id="txtb031" value= 0  style="width:50px;height:10px;" />
+       	
+        	
+        	
   </form>
   <hr />
   
